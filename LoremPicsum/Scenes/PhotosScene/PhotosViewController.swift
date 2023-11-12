@@ -11,41 +11,58 @@ import Combine
 class PhotoViewController: UICollectionViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Int, Photo>!
     private var currentPage = 1
-    private var viewModel = PhotoViewModel()
+    private var viewModel: PhotoViewModel
     private var cancellables: Set<AnyCancellable> = []
+    private static let cellItemSize = CGSize(width: 100, height: 100)
+    
+    init(viewModel: PhotoViewModel) {
+        self.viewModel = viewModel
+        super.init(collectionViewLayout: {
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = Self.cellItemSize
+            return layout
+        }())
+    }
 
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        print("deinit")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
         bindViewModel()
         fetchPhotos()
+        displayShort(.info, message: "Welcome")
+        self.title = "Lorem Picsum Photos"
     }
-
+    
     private func configureCollectionView() {
-        collectionView.collectionViewLayout = createLayout()
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: "PhotoCell")
 
         dataSource = UICollectionViewDiffableDataSource<Int, Photo>(collectionView: collectionView) { collectionView, indexPath, photo in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
-            cell.configure(with: photo, errorSubject: self.viewModel.photoErrorSubject)
+            cell.configure(with: photo) { [weak viewModel = self.viewModel] photo, completion in
+                viewModel?.getImage(for: photo, targetSize: Self.cellItemSize, completion: completion)
+            }
             return cell
         }
     }
 
-    private func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 120, height: 120)
-        return layout
-    }
-
     private func bindViewModel() {
         viewModel.photosPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] photos in
                 self?.applySnapshot(photos)
             }
             .store(in: &cancellables)
 
         viewModel.photoErrorSubject
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 self?.handleError(error)
             }
@@ -73,14 +90,11 @@ class PhotoViewController: UICollectionViewController {
             errorMessage = "Failed to load image"
         }
 
-        displayError(message: errorMessage)
+        displayShort(.error, message: errorMessage)
     }
 
-    private func displayError(message: String) {
-        let errorView = ErrorView(frame: CGRect(x: 0, y: -50, width: collectionView.bounds.width, height: 50), message: message) {
-            // Optional: Handle close action if needed
-        }
-        collectionView.addSubview(errorView)
+    private func displayShort(_ type: NoticeType, message: String) {
+        ShortNotice.display(type, message: message, in: self.collectionView)
     }
 
     // MARK: - UICollectionViewDelegate
@@ -92,3 +106,9 @@ class PhotoViewController: UICollectionViewController {
         }
     }
 }
+
+extension PhotoViewController {
+     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+         viewModel.didSelectPhoto(at: indexPath.item)
+     }
+ }

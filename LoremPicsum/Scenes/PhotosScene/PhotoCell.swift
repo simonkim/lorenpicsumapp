@@ -17,8 +17,11 @@ class PhotoCell: UICollectionViewCell {
         return imageView
     }()
 
-    private var cancellables: Set<AnyCancellable> = []
-
+    private let preferredImageScale: CGFloat = { UIScreen.main.scale }()
+    private var placeholderImage: UIImage? = {
+        UIImage(systemName: "icloud")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
@@ -41,18 +44,24 @@ class PhotoCell: UICollectionViewCell {
         ])
     }
 
-    func configure(with photo: Photo, errorSubject: PassthroughSubject<PhotoError, Never>) {
-        guard let imageURL = URL(string: photo.downloadUrl) else {
-            imageView.image = UIImage(named: "placeholderImage")
-            return
-        }
+    var photoId: Photo.ID?
+    func configure(with photo: Photo, getImage: @escaping (Photo, @escaping (UIImage?) -> Void) -> Void) {
 
-        Task {
-            do {
-                try await imageView.loadImage(from: imageURL, placeholder: UIImage(named: "placeholderImage"))
-            } catch {
-                errorSubject.send(.imageLoadingFailed)
+        // Reset the image to a placeholder
+        photoId = photo.id
+        imageView.image = placeholderImage
+        imageView.contentMode = .scaleAspectFit
+
+        // Fetch the image using the provided function
+        getImage(photo) { [weak self] image in
+            // Ensure that the cell is still configured for the correct photo
+            guard self?.photoId == photo.id else {
+                return
             }
+            
+            self?.imageView.image = image
+            self?.imageView.contentMode = .scaleAspectFill
+
         }
     }
 }
