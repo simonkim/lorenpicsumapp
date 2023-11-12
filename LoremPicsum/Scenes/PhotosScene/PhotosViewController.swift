@@ -8,18 +8,28 @@
 import UIKit
 import Combine
 
+@available(iOS 17, *)
+#Preview {
+    PhotoViewController(
+        viewModel: PhotoViewModel(
+            navigator: PhotoNavigator(navigationController: nil)
+        )
+    )
+}
+
 class PhotoViewController: UICollectionViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Int, Photo>!
     private var currentPage = 1
     private var viewModel: PhotoViewModel
     private var cancellables: Set<AnyCancellable> = []
-    private static let cellItemSize = CGSize(width: 100, height: 100)
+    private static let cellItemSize = CGSize(width: 110, height: 110)
     
     init(viewModel: PhotoViewModel) {
         self.viewModel = viewModel
         super.init(collectionViewLayout: {
             let layout = UICollectionViewFlowLayout()
             layout.itemSize = Self.cellItemSize
+            layout.sectionInset = .init(top: 0, left: 16, bottom: 0, right: 16)
             return layout
         }())
     }

@@ -7,6 +7,15 @@
 
 import UIKit
 
+@available(iOS 17, *)
+#Preview {
+    let view = UIStackView()
+    view.axis = .vertical
+    view.addArrangedSubview(ShortNotice(.info, message: "Welcome to LremPicsum App", timeout: 20))
+    view.addArrangedSubview(ShortNotice(.error, message: "Failed to load image id:10", timeout: 20))
+    return view
+}
+
 extension ShortNotice {
     /// Displays a ShortNotice with the specified type, message, and optional timeout and close action.
     ///
@@ -22,7 +31,7 @@ extension ShortNotice {
                         timeout: TimeInterval = 2,
                         closeAction: (() -> Void)? = nil) {
         let frame = CGRect(x: 0, y: -50, width: view.bounds.width, height: 50)
-        let notice = ShortNotice(type: type, message: message, timeout: timeout, closeAction: closeAction)
+        let notice = ShortNotice(type, message: message, timeout: timeout, closeAction: closeAction)
         notice.frame = frame
 
         // Add the notice to the provided view
@@ -64,7 +73,7 @@ class ShortNotice: UIView {
 
     private var closeAction: (() -> Void)?
 
-    init(type: NoticeType, message: String, timeout: TimeInterval, closeAction: (() -> Void)? = nil) {
+    init(_ type: NoticeType, message: String, timeout: TimeInterval = 2, closeAction: (() -> Void)? = nil) {
         super.init(frame: .zero)
 
         backgroundColor = type.backgroundColor

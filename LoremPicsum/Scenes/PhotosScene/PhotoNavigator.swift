@@ -20,7 +20,7 @@ import UIKit
 class PhotoNavigator {
     private weak var navigationController: UINavigationController?
 
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController?) {
         self.navigationController = navigationController
     }
 

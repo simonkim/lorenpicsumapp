@@ -67,6 +67,7 @@
 		F494B8CD2B01009D003C4064 /* PhotoScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoScene.swift; sourceTree = "<group>"; };
 		F494B8CF2B0109F8003C4064 /* FullSizePhotoScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullSizePhotoScene.swift; sourceTree = "<group>"; };
 		F494B8D12B010A7B003C4064 /* FullSizePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullSizePhotoViewModel.swift; sourceTree = "<group>"; };
+		F494B8D52B0113CB003C4064 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +98,7 @@
 		F494B8822B00AC79003C4064 = {
 			isa = PBXGroup;
 			children = (
+				F494B8D52B0113CB003C4064 /* README.md */,
 				F494B88D2B00AC79003C4064 /* LoremPicsum */,
 				F494B89E2B00AC7B003C4064 /* LoremPicsumTests */,
 				F494B8A82B00AC7B003C4064 /* LoremPicsumUITests */,

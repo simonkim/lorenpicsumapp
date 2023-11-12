@@ -6,7 +6,6 @@
 //
 import UIKit
 
-
 class CachedImageStore {
     enum Error: Swift.Error {
         case imageLoadingFailed

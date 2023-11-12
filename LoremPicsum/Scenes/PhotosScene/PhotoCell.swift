@@ -47,14 +47,11 @@ class PhotoCell: UICollectionViewCell {
     var photoId: Photo.ID?
     func configure(with photo: Photo, getImage: @escaping (Photo, @escaping (UIImage?) -> Void) -> Void) {
 
-        // Reset the image to a placeholder
         photoId = photo.id
         imageView.image = placeholderImage
         imageView.contentMode = .scaleAspectFit
 
-        // Fetch the image using the provided function
         getImage(photo) { [weak self] image in
-            // Ensure that the cell is still configured for the correct photo
             guard self?.photoId == photo.id else {
                 return
             }
