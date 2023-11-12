@@ -14,6 +14,12 @@
 		F494B8A02B00AC7B003C4064 /* LoremPicsumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494B89F2B00AC7B003C4064 /* LoremPicsumTests.swift */; };
 		F494B8AA2B00AC7B003C4064 /* LoremPicsumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494B8A92B00AC7B003C4064 /* LoremPicsumUITests.swift */; };
 		F494B8AC2B00AC7B003C4064 /* LoremPicsumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494B8AB2B00AC7B003C4064 /* LoremPicsumUITestsLaunchTests.swift */; };
+		F494B8BA2B00ACBE003C4064 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494B8B92B00ACBE003C4064 /* PhotosViewController.swift */; };
+		F494B8BC2B00AD84003C4064 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494B8BB2B00AD84003C4064 /* PhotoViewModel.swift */; };
+		F494B8BE2B00ADD9003C4064 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494B8BD2B00ADD9003C4064 /* PhotoCell.swift */; };
+		F494B8C02B00ADFD003C4064 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494B8BF2B00ADFD003C4064 /* Photo.swift */; };
+		F494B8C22B00AEF5003C4064 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494B8C12B00AEF5003C4064 /* UIImageView+URL.swift */; };
+		F494B8C42B00B3B3003C4064 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494B8C32B00B3B3003C4064 /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,12 @@
 		F494B8A52B00AC7B003C4064 /* LoremPicsumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoremPicsumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F494B8A92B00AC7B003C4064 /* LoremPicsumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoremPicsumUITests.swift; sourceTree = "<group>"; };
 		F494B8AB2B00AC7B003C4064 /* LoremPicsumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoremPicsumUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F494B8B92B00ACBE003C4064 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		F494B8BB2B00AD84003C4064 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		F494B8BD2B00ADD9003C4064 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		F494B8BF2B00ADFD003C4064 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		F494B8C12B00AEF5003C4064 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
+		F494B8C32B00B3B3003C4064 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +108,7 @@
 			children = (
 				F494B88E2B00AC79003C4064 /* LoremPicsumApp.swift */,
 				F494B8902B00AC79003C4064 /* ContentView.swift */,
+				F494B8B82B00ACA5003C4064 /* PhotosScene */,
 				F494B8922B00AC7B003C4064 /* Assets.xcassets */,
 				F494B8942B00AC7B003C4064 /* Preview Content */,
 			);
@@ -125,6 +138,19 @@
 				F494B8AB2B00AC7B003C4064 /* LoremPicsumUITestsLaunchTests.swift */,
 			);
 			path = LoremPicsumUITests;
+			sourceTree = "<group>";
+		};
+		F494B8B82B00ACA5003C4064 /* PhotosScene */ = {
+			isa = PBXGroup;
+			children = (
+				F494B8BF2B00ADFD003C4064 /* Photo.swift */,
+				F494B8BB2B00AD84003C4064 /* PhotoViewModel.swift */,
+				F494B8B92B00ACBE003C4064 /* PhotosViewController.swift */,
+				F494B8BD2B00ADD9003C4064 /* PhotoCell.swift */,
+				F494B8C12B00AEF5003C4064 /* UIImageView+URL.swift */,
+				F494B8C32B00B3B3003C4064 /* ErrorView.swift */,
+			);
+			path = PhotosScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +283,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F494B8C02B00ADFD003C4064 /* Photo.swift in Sources */,
+				F494B8BA2B00ACBE003C4064 /* PhotosViewController.swift in Sources */,
+				F494B8BE2B00ADD9003C4064 /* PhotoCell.swift in Sources */,
+				F494B8BC2B00AD84003C4064 /* PhotoViewModel.swift in Sources */,
 				F494B8912B00AC79003C4064 /* ContentView.swift in Sources */,
+				F494B8C22B00AEF5003C4064 /* UIImageView+URL.swift in Sources */,
 				F494B88F2B00AC79003C4064 /* LoremPicsumApp.swift in Sources */,
+				F494B8C42B00B3B3003C4064 /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,7 +467,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.dev.exp.LoremPicsum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.dev.exp.LorenPicsum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -464,7 +496,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.dev.exp.LoremPicsum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.dev.exp.LorenPicsum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
